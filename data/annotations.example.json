@@ -1,0 +1,30 @@
+{
+  "failures": [
+    {
+      "id": "F001",
+      "source_video": "dr_doctor_v1.mp4",
+      "source_url": "sample_AI_videos/dr_doctor_v1.mp4",
+      "source_model": "unknown",
+      "category": "character_consistency",
+      "frame_range": [
+        120,
+        145
+      ],
+      "timestamp_sec": [
+        5.0,
+        6.0
+      ],
+      "key_frames": [
+        130,
+        140
+      ],
+      "severity": "high",
+      "human_noticeability": 5,
+      "human_judgment": "Doctor's face changes completely during the head turn.",
+      "targeted_question": "Compare the doctor's facial features in frame 130 and frame 140. Are the nose shape, eye spacing, and jawline consistent between these two frames?",
+      "expected_answer": "No. The facial features are inconsistent and change noticeably between the two frames.",
+      "difficulty": "medium"
+    }
+  ]
+}
+

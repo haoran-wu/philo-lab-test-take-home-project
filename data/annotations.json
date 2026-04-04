@@ -1,0 +1,892 @@
+{
+  "failures": [
+    {
+      "id": "F001",
+      "source_video": "dr_doctor_v1.mp4",
+      "source_url": "sample_AI_videos/dr_doctor_v1.mp4",
+      "source_model": "unknown",
+      "category": "object_permanence_logical_consistency",
+      "frame_range": [
+        368,
+        442
+      ],
+      "timestamp_sec": [
+        16.8,
+        17.6
+      ],
+      "key_frames": [
+        370,
+        380,
+        390,
+        400,
+        410,
+        420,
+        430,
+        440
+      ],
+      "severity": "high",
+      "human_noticeability": 4,
+      "human_judgment": "Around 17 seconds, the liquid flowing downward inside the transparent tubing violates physical continuity. Part of the liquid appears to pass through the tube structure in an impossible way instead of remaining confined within a single continuous channel.",
+      "targeted_question": "Across these frames, does the liquid remain physically contained within one continuous tube, or does it appear to pass through the tube structure in an impossible way?",
+      "expected_answer": "It appears to pass through the tube structure in an impossible way rather than staying inside one continuous tube.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F002",
+      "source_video": "dr_doctor_v1.mp4",
+      "source_url": "sample_AI_videos/dr_doctor_v1.mp4",
+      "source_model": "unknown",
+      "category": "character_consistency",
+      "frame_range": [
+        845,
+        855
+      ],
+      "timestamp_sec": [
+        33.8,
+        34.2
+      ],
+      "key_frames": [
+        850
+      ],
+      "severity": "medium",
+      "human_noticeability": 4,
+      "human_judgment": "Around 34 seconds, the person's visible foot is anatomically distorted and looks more like a hand than a normal foot.",
+      "targeted_question": "In this frame, does the visible foot have a normal human foot shape, or does it appear malformed and hand-like?",
+      "expected_answer": "It appears malformed and hand-like rather than having a normal human foot shape.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "F003",
+      "source_video": "dr_doctor_v1.mp4",
+      "source_url": "sample_AI_videos/dr_doctor_v1.mp4",
+      "source_model": "unknown",
+      "category": "object_permanence_logical_consistency",
+      "frame_range": [
+        368,
+        442
+      ],
+      "timestamp_sec": [
+        16.8,
+        17.6
+      ],
+      "key_frames": [
+        370,
+        380,
+        390,
+        400,
+        410,
+        420,
+        430,
+        440
+      ],
+      "severity": "medium",
+      "human_noticeability": 3,
+      "human_judgment": "Around 17 seconds, the liquid in the lower-left and lower-right tubes appears inconsistent with the visible bubbles. The bubbles remain unnaturally stationary instead of moving with the flowing liquid, making the fluid motion physically implausible.",
+      "targeted_question": "Across these frames, do the bubbles in the lower-left and lower-right tubes move consistently with the liquid flow, or do they remain unnaturally stationary?",
+      "expected_answer": "The bubbles remain unnaturally stationary instead of moving consistently with the liquid flow.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F004",
+      "source_video": "dr_doctor_v1.mp4",
+      "source_url": "sample_AI_videos/dr_doctor_v1.mp4",
+      "source_model": "unknown",
+      "category": "text_logo_corruption",
+      "frame_range": [
+        25,
+        75
+      ],
+      "timestamp_sec": [
+        1.0,
+        3.0
+      ],
+      "key_frames": [
+        40,
+        55,
+        72
+      ],
+      "severity": "medium",
+      "human_noticeability": 4,
+      "human_judgment": "Within the first 1 to 3 seconds, the timestamp-style overlays are inconsistent across frames. The times shown in the top-left and bottom-left corners do not progress coherently, and the top-left digits are blurry and hard to read.",
+      "targeted_question": "Across these frames, do the timestamp overlays in the top-left and bottom-left corners remain readable and progress in a consistent chronological order?",
+      "expected_answer": "No. The timestamp overlays are not consistently readable, and the displayed times do not progress in a coherent chronological order.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F005",
+      "source_video": "dr_doctor_v1.mp4",
+      "source_url": "sample_AI_videos/dr_doctor_v1.mp4",
+      "source_model": "unknown",
+      "category": "object_permanence_logical_consistency",
+      "frame_range": [
+        25,
+        75
+      ],
+      "timestamp_sec": [
+        1.0,
+        3.0
+      ],
+      "key_frames": [
+        40,
+        55,
+        72
+      ],
+      "severity": "medium",
+      "human_noticeability": 3,
+      "human_judgment": "In the first 1 to 3 seconds, the microorganism-like objects in the water do not appear to share a consistent viewpoint or scale with the fish. They look composited from a different visual perspective rather than existing naturally in the same scene.",
+      "targeted_question": "Do the microorganism-like objects and the fish appear to share a consistent viewpoint and spatial scale within the same underwater scene?",
+      "expected_answer": "No. The microorganism-like objects do not match the fish in viewpoint and spatial scale, so they do not appear to belong to a coherent single scene.",
+      "difficulty": "hard"
+    },
+    {
+      "id": "F006",
+      "source_video": "dr_doctor_v2.mp4",
+      "source_url": "sample_AI_videos/dr_doctor_v2.mp4",
+      "source_model": "unknown",
+      "category": "object_permanence_logical_consistency",
+      "frame_range": [
+        218,
+        242
+      ],
+      "timestamp_sec": [
+        8.7,
+        9.7
+      ],
+      "key_frames": [
+        220,
+        225,
+        229,
+        235,
+        240
+      ],
+      "severity": "high",
+      "human_noticeability": 4,
+      "human_judgment": "Around 9 seconds, the liquid motion between the two bottles violates gravity and continuity. The scene appears to intend that liquid is being poured from one bottle into the other, but instead the liquid is generated in the middle and flows outward toward both sides, which is physically impossible.",
+      "targeted_question": "Across these frames, does the liquid flow continuously from one bottle into the other, or does it appear to originate in the middle and move outward in both directions?",
+      "expected_answer": "The liquid does not flow continuously from one bottle into the other. It appears to originate in the middle and move outward toward both sides, which is physically impossible.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F007",
+      "source_video": "dr_doctor_v2.mp4",
+      "source_url": "sample_AI_videos/dr_doctor_v2.mp4",
+      "source_model": "unknown",
+      "category": "object_permanence_logical_consistency",
+      "frame_range": [
+        296,
+        327
+      ],
+      "timestamp_sec": [
+        11.8,
+        12.6
+      ],
+      "key_frames": [
+        298,
+        306,
+        314,
+        325
+      ],
+      "severity": "medium",
+      "human_noticeability": 4,
+      "human_judgment": "Around 12 seconds, the tube should be fully filled with liquid, but several very large irregular air pockets appear inside it. These cavity-like gaps break the continuity of the liquid column and look physically implausible.",
+      "targeted_question": "Across these frames, is the tube continuously filled with liquid, or do large irregular air pockets appear inside the liquid column?",
+      "expected_answer": "Large irregular air pockets appear inside the liquid column instead of the tube being continuously filled with liquid.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F008",
+      "source_video": "dr_doctor_v2.mp4",
+      "source_url": "sample_AI_videos/dr_doctor_v2.mp4",
+      "source_model": "unknown",
+      "category": "text_logo_corruption",
+      "frame_range": [
+        295,
+        315
+      ],
+      "timestamp_sec": [
+        11.8,
+        12.6
+      ],
+      "key_frames": [
+        306
+      ],
+      "severity": "medium",
+      "human_noticeability": 4,
+      "human_judgment": "Around 12 seconds, the measurement markings on the right-side cylinder are numerically inconsistent. The visible labels appear in the order 20 at the top, 15 in the middle, and 50 lower down, which does not form a valid scale.",
+      "targeted_question": "In this frame, do the numeric labels on the right-side measurement scale increase or decrease consistently, or are they out of order?",
+      "expected_answer": "They are out of order. The visible labels do not form a consistent numeric scale.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "F009",
+      "source_video": "dr_doctor_v2.mp4",
+      "source_url": "sample_AI_videos/dr_doctor_v2.mp4",
+      "source_model": "unknown",
+      "category": "object_permanence_logical_consistency",
+      "frame_range": [
+        624,
+        652
+      ],
+      "timestamp_sec": [
+        24.9,
+        26.2
+      ],
+      "key_frames": [
+        626,
+        630,
+        638,
+        646,
+        650
+      ],
+      "severity": "medium",
+      "human_noticeability": 4,
+      "human_judgment": "Around 25 to 26 seconds, a large sheet of flowing water suddenly appears on the person's forearm and hand. The water does not seem to come from a coherent source or continuous motion; instead, it looks as if a glossy liquid layer is abruptly generated on the skin.",
+      "targeted_question": "Across these frames, does the water on the forearm and hand emerge from a physically coherent source and continuous flow, or does it appear abruptly as if it materializes on the skin?",
+      "expected_answer": "It appears abruptly as if it materializes on the skin, rather than emerging from a coherent source and continuous flow.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F010",
+      "source_video": "dr_doctor_v2.mp4",
+      "source_url": "sample_AI_videos/dr_doctor_v2.mp4",
+      "source_model": "unknown",
+      "category": "object_permanence_logical_consistency",
+      "frame_range": [
+        1265,
+        1285
+      ],
+      "timestamp_sec": [
+        50.6,
+        51.4
+      ],
+      "key_frames": [
+        1272,
+        1278,
+        1283
+      ],
+      "severity": "medium",
+      "human_noticeability": 4,
+      "human_judgment": "Around 51 seconds, the water forms an implausible hollow circular structure. Instead of behaving like a normal wave or vortex, the liquid appears to rotate around an empty central hole, creating a stable ring-like void that does not look physically plausible.",
+      "targeted_question": "Across these frames, does the water behave like a physically plausible wave or vortex, or does it form an unnatural hollow ring with liquid rotating around an empty center?",
+      "expected_answer": "It forms an unnatural hollow ring with liquid rotating around an empty center, which does not look physically plausible.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F011",
+      "source_video": "dr_doctor_v2.mp4",
+      "source_url": "sample_AI_videos/dr_doctor_v2.mp4",
+      "source_model": "unknown",
+      "category": "character_consistency",
+      "frame_range": [
+        675,
+        1510
+      ],
+      "timestamp_sec": [
+        27.0,
+        60.4
+      ],
+      "key_frames": [
+        675,
+        1510
+      ],
+      "severity": "medium",
+      "human_noticeability": 4,
+      "human_judgment": "The white-haired female character is not age-consistent across the video. Around 27 seconds she appears much younger, with smoother and softer skin, while around 60 seconds she looks significantly older, with a different facial age impression and skin texture.",
+      "targeted_question": "Comparing these two frames, does the white-haired female character maintain a consistent apparent age and facial skin texture, or do these attributes change noticeably?",
+      "expected_answer": "Her apparent age and facial skin texture change noticeably between the two frames, so the character is not visually consistent.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F012",
+      "source_video": "man_1.mp4",
+      "source_url": "sample_AI_videos/man_1.mp4",
+      "source_model": "unknown",
+      "category": "shadow_lighting_physics",
+      "frame_range": [
+        21,
+        28
+      ],
+      "timestamp_sec": [
+        0.8,
+        1.3
+      ],
+      "key_frames": [
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "severity": "medium",
+      "human_noticeability": 4,
+      "human_judgment": "From 0 to 7 seconds, rainfall is visibly present on the right side of the scene, but the left side does not show a matching rain effect. The weather appears spatially inconsistent, as if rain is affecting only one side of the same open landscape.",
+      "targeted_question": "Across these frames, is the rainfall distributed consistently across the whole landscape, or is rain visible on the right side without a matching effect on the left?",
+      "expected_answer": "Rain is visible on the right side without a matching effect on the left, so the weather distribution is spatially inconsistent.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F013",
+      "source_video": "man_1.mp4",
+      "source_url": "sample_AI_videos/man_1.mp4",
+      "source_model": "unknown",
+      "category": "text_logo_corruption",
+      "frame_range": [
+        335,
+        355
+      ],
+      "timestamp_sec": [
+        13.4,
+        14.2
+      ],
+      "key_frames": [
+        345
+      ],
+      "severity": "high",
+      "human_noticeability": 4,
+      "human_judgment": "Around 14 seconds, the Chinese calligraphy on the funeral couplets is corrupted. Several of the written characters are not valid Chinese characters and appear as malformed pseudo-text rather than readable calligraphy.",
+      "targeted_question": "In this frame, does the calligraphy on the funeral couplets consist of valid readable Chinese characters, or are some of the characters malformed pseudo-text?",
+      "expected_answer": "Some of the characters are malformed pseudo-text rather than valid readable Chinese characters.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F014",
+      "source_video": "man_1.mp4",
+      "source_url": "sample_AI_videos/man_1.mp4",
+      "source_model": "unknown",
+      "category": "text_logo_corruption",
+      "frame_range": [
+        815,
+        835
+      ],
+      "timestamp_sec": [
+        32.6,
+        33.4
+      ],
+      "key_frames": [
+        825
+      ],
+      "severity": "high",
+      "human_noticeability": 4,
+      "human_judgment": "Around 33 seconds, the Chinese text on the funeral ribbons and signboards is corrupted. Multiple visible characters are malformed pseudo-Chinese rather than valid readable Chinese text.",
+      "targeted_question": "In this frame, do the Chinese characters on the funeral ribbons and signboards form valid readable Chinese text, or are they malformed pseudo-text?",
+      "expected_answer": "They are malformed pseudo-text rather than valid readable Chinese text.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F015",
+      "source_video": "man_1.mp4",
+      "source_url": "sample_AI_videos/man_1.mp4",
+      "source_model": "unknown",
+      "category": "temporal_coherence",
+      "frame_range": [
+        1093,
+        1109
+      ],
+      "timestamp_sec": [
+        45.9,
+        46.9
+      ],
+      "key_frames": [
+        1093,
+        1096,
+        1099,
+        1102,
+        1106,
+        1109
+      ],
+      "severity": "medium",
+      "human_noticeability": 4,
+      "human_judgment": "Around 46 seconds, the door behind the man gradually closes even though no visible person or force interacts with it. The change in door position happens without a clear physical cause, creating an implausible state transition.",
+      "targeted_question": "Across these frames, does the door behind the man close through a visible physical interaction, or does it close on its own without a clear cause?",
+      "expected_answer": "It closes on its own without a visible physical interaction or clear cause.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F016",
+      "source_video": "man_1.mp4",
+      "source_url": "sample_AI_videos/man_1.mp4",
+      "source_model": "unknown",
+      "category": "temporal_coherence",
+      "frame_range": [
+        1452,
+        1458
+      ],
+      "timestamp_sec": [
+        60.5,
+        60.7
+      ],
+      "key_frames": [
+        1452,
+        1453,
+        1454,
+        1455,
+        1456,
+        1457,
+        1458
+      ],
+      "severity": "high",
+      "human_noticeability": 5,
+      "human_judgment": "Around 61 seconds, the dresser drawer begins sliding open before the man's hand makes any contact with the handle. In frame 1448 the hand is mid-air between drawers with no physical contact, yet the drawer is already visibly displaced outward. The effect (drawer opening) precedes the cause (hand grasping handle), violating basic physical causality.",
+      "targeted_question": "In the sequence of frames showing the man reaching toward the dresser, does the drawer begin to open only after his hand contacts the handle, or does it start moving while his hand is still in the air away from the handle?",
+      "expected_answer": "The drawer starts moving while his hand is still in the air and has not yet touched the handle, which violates physical causality.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F017",
+      "source_video": "man_1.mp4",
+      "source_url": "sample_AI_videos/man_1.mp4",
+      "source_model": "unknown",
+      "category": "text_logo_corruption",
+      "frame_range": [
+        1600,
+        1615
+      ],
+      "timestamp_sec": [
+        66.7,
+        67.3
+      ],
+      "key_frames": [
+        1607
+      ],
+      "severity": "high",
+      "human_noticeability": 4,
+      "human_judgment": "Around 1 minute 7 seconds, the banknote does not match a valid Chinese RMB note. The Chinese text is incorrect, the printed design is inconsistent with a real banknote, and the color and denomination styling do not match an authentic RMB bill.",
+      "targeted_question": "In this frame, does the banknote match a valid Chinese RMB note in its Chinese text, denomination design, and overall color scheme, or is it visibly incorrect?",
+      "expected_answer": "It is visibly incorrect and does not match a valid Chinese RMB note in its text, design, and denomination/color styling.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F018",
+      "source_video": "man_1.mp4",
+      "source_url": "sample_AI_videos/man_1.mp4",
+      "source_model": "unknown",
+      "category": "object_permanence_logical_consistency",
+      "frame_range": [
+        1580,
+        1685
+      ],
+      "timestamp_sec": [
+        66.0,
+        70.2
+      ],
+      "key_frames": [
+        1607,
+        1678
+      ],
+      "severity": "medium",
+      "human_noticeability": 4,
+      "human_judgment": "Around 1 minute 6 seconds, the drawer visibly contains multiple banknotes. By around 1 minute 10 seconds, when the money is picked up, only a single note remains visible. The number of banknotes changes without a coherent intermediate action, violating object continuity.",
+      "targeted_question": "Comparing these frames, does the number of visible banknotes remain consistent, or do multiple notes seen earlier become only one note later without a clear transition?",
+      "expected_answer": "The number of visible banknotes is not consistent. Multiple notes are visible earlier, but only one remains visible later without a clear transition.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F019",
+      "source_video": "man_1.mp4",
+      "source_url": "sample_AI_videos/man_1.mp4",
+      "source_model": "unknown",
+      "category": "text_logo_corruption",
+      "frame_range": [
+        1920,
+        1995
+      ],
+      "timestamp_sec": [
+        80.0,
+        83.0
+      ],
+      "key_frames": [
+        1945
+      ],
+      "severity": "high",
+      "human_noticeability": 4,
+      "human_judgment": "Around 1 minute 20 to 1 minute 23 seconds, the handwritten Chinese text on the open pages is corrupted. Multiple visible characters are malformed pseudo-Chinese rather than valid readable Chinese writing.",
+      "targeted_question": "In this frame, does the handwritten text on the pages consist of valid readable Chinese characters, or are many of the characters malformed pseudo-text?",
+      "expected_answer": "Many of the visible characters are malformed pseudo-text rather than valid readable Chinese characters.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F020",
+      "source_video": "man_2.mp4",
+      "source_url": "sample_AI_videos/man_2.mp4",
+      "source_model": "unknown",
+      "category": "temporal_coherence",
+      "frame_range": [
+        768,
+        802
+      ],
+      "timestamp_sec": [
+        30.9,
+        32.1
+      ],
+      "key_frames": [
+        772,
+        788,
+        792,
+        796,
+        800
+      ],
+      "severity": "medium",
+      "human_noticeability": 4,
+      "human_judgment": "Around 32 to 33 seconds, the way the person closes the door is physically implausible. The hand placement and grip on the door edge are unnatural, and by the final moment the hand appears to be caught or clipped into the closing door instead of moving through a coherent human motion.",
+      "targeted_question": "Comparing these frames, does the person close the door with a physically coherent hand grip and release, or does the hand interaction look unnatural and end up clipped into the closing door?",
+      "expected_answer": "The hand interaction looks unnatural, and the hand appears clipped into the closing door rather than following a physically coherent motion.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F021",
+      "source_video": "man_2.mp4",
+      "source_url": "sample_AI_videos/man_2.mp4",
+      "source_model": "unknown",
+      "category": "object_permanence_logical_consistency",
+      "frame_range": [
+        941,
+        955
+      ],
+      "timestamp_sec": [
+        37.2,
+        38.2
+      ],
+      "key_frames": [
+        941,
+        943,
+        945,
+        947,
+        949,
+        952,
+        955
+      ],
+      "severity": "medium",
+      "human_noticeability": 4,
+      "human_judgment": "Around 37 to 38 seconds, flame-like bursts suddenly appear around the hanging light bulb. The bright plume looks more like an explosion or fire erupting from the bulb than a physically plausible lighting effect.",
+      "targeted_question": "In this frame, does the hanging light bulb produce a normal light glow, or are there flame-like bursts around it that look physically implausible?",
+      "expected_answer": "There are flame-like bursts around the bulb that look physically implausible rather than a normal light glow.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F022",
+      "source_video": "man_2.mp4",
+      "source_url": "sample_AI_videos/man_2.mp4",
+      "source_model": "unknown",
+      "category": "text_logo_corruption",
+      "frame_range": [
+        963,
+        967
+      ],
+      "timestamp_sec": [
+        38.6,
+        38.7
+      ],
+      "key_frames": [
+        965
+      ],
+      "severity": "high",
+      "human_noticeability": 4,
+      "human_judgment": "Around 37 seconds, the wall calendars contain corrupted date text. The dates are not arranged in a normal sequential calendar order from 1 through 30 or 31, and some cells even contain letters instead of valid numeric dates.",
+      "targeted_question": "In this frame, do the wall calendars show dates in a valid sequential monthly layout, or are the date entries disordered and mixed with letters?",
+      "expected_answer": "The date entries are disordered and mixed with letters rather than forming a valid sequential monthly calendar layout.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F023",
+      "source_video": "man_2.mp4",
+      "source_url": "sample_AI_videos/man_2.mp4",
+      "source_model": "unknown",
+      "category": "text_logo_corruption",
+      "frame_range": [
+        1120,
+        1152
+      ],
+      "timestamp_sec": [
+        45.6,
+        46.7
+      ],
+      "key_frames": [
+        1120,
+        1124,
+        1128,
+        1132,
+        1136,
+        1140,
+        1144,
+        1148,
+        1152
+      ],
+      "severity": "high",
+      "human_noticeability": 4,
+      "human_judgment": "Between around 45 and 48 seconds, the bottle labels change inconsistently. Labels that previously appeared as normal English text later turn into malformed pseudo-Chinese characters, so the writing system and legibility are not preserved across time.",
+      "targeted_question": "Comparing these frames, do the bottle labels remain consistent readable English text, or do they later change into malformed pseudo-Chinese characters?",
+      "expected_answer": "The bottle labels do not remain consistent. They later change from readable English text into malformed pseudo-Chinese characters.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F024",
+      "source_video": "siyi_v1.mp4",
+      "source_url": "sample_AI_videos/siyi_v1.mp4",
+      "source_model": "unknown",
+      "category": "character_consistency",
+      "frame_range": [
+        910,
+        931
+      ],
+      "timestamp_sec": [
+        35.6,
+        37.9
+      ],
+      "key_frames": [
+        910,
+        913,
+        916,
+        919,
+        922,
+        925,
+        928,
+        931
+      ],
+      "severity": "medium",
+      "human_noticeability": 4,
+      "human_judgment": "Around 37 seconds, the visible thumb is anatomically malformed in the earlier frames. In the later frames around the same moment, the thumb returns to a more normal human shape, so the hand anatomy is not temporally consistent.",
+      "targeted_question": "Comparing these frames, does the visible thumb maintain a consistent normal human shape, or is it malformed in the earlier frames and then return to a normal shape later?",
+      "expected_answer": "The thumb is not temporally consistent. It appears malformed in the earlier frames and then returns to a more normal shape later.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F025",
+      "source_video": "siyi_v1.mp4",
+      "source_url": "sample_AI_videos/siyi_v1.mp4",
+      "source_model": "unknown",
+      "category": "object_permanence_logical_consistency",
+      "frame_range": [
+        940,
+        957
+      ],
+      "timestamp_sec": [
+        37.6,
+        38.2
+      ],
+      "key_frames": [
+        942,
+        944,
+        947,
+        950,
+        952,
+        955
+      ],
+      "severity": "medium",
+      "human_noticeability": 4,
+      "human_judgment": "Around 38 seconds, the finger geometry is inconsistent with the hair strands. A finger appears to pass directly through the hair instead of being occluded by or physically separating the strands, creating an obvious interpenetration artifact.",
+      "targeted_question": "Comparing these frames, does the finger interact with the hair in a physically coherent way, or does it appear to pass through the hair strands?",
+      "expected_answer": "The finger does not interact with the hair in a physically coherent way. It appears to pass through the hair strands.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F026",
+      "source_video": "siyi_v1.mp4",
+      "source_url": "sample_AI_videos/siyi_v1.mp4",
+      "source_model": "unknown",
+      "category": "shadow_lighting_physics",
+      "frame_range": [
+        1245,
+        1265
+      ],
+      "timestamp_sec": [
+        49.8,
+        50.6
+      ],
+      "key_frames": [
+        1250
+      ],
+      "severity": "medium",
+      "human_noticeability": 3,
+      "human_judgment": "Around 50 seconds, the lighting is not physically coherent. The strong golden light streak, the highlights on the bottle surface, and the dark shading/reflection near the base do not agree on a consistent light direction or illumination setup.",
+      "targeted_question": "In this frame, are the light streak, bottle highlights, and base shadow/reflection consistent with a single coherent lighting setup, or do they conflict with each other?",
+      "expected_answer": "They conflict with each other and do not match a single coherent lighting setup.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F027",
+      "source_video": "siyi_v1.mp4",
+      "source_url": "sample_AI_videos/siyi_v1.mp4",
+      "source_model": "unknown",
+      "category": "text_logo_corruption",
+      "frame_range": [
+        1295,
+        1305
+      ],
+      "timestamp_sec": [
+        51.8,
+        52.2
+      ],
+      "key_frames": [
+        1300
+      ],
+      "severity": "medium",
+      "human_noticeability": 4,
+      "human_judgment": "Around 52 seconds, the English branding text on the bottles is corrupted. Several letters are malformed or blended together, and the product names read like pseudo-English rather than valid clear words.",
+      "targeted_question": "In this frame, does the bottle text form clear valid English branding, or are several letters malformed so that the labels read like pseudo-English?",
+      "expected_answer": "The labels do not form clear valid English branding. Several letters are malformed, so the text reads like pseudo-English.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F028",
+      "source_video": "man_2.mp4",
+      "source_url": "sample_AI_videos/man_2.mp4",
+      "source_model": "unknown",
+      "category": "object_permanence_logical_consistency",
+      "frame_range": [
+        948,
+        1352
+      ],
+      "timestamp_sec": [
+        38.0,
+        54.0
+      ],
+      "key_frames": [
+        965,
+        1350
+      ],
+      "severity": "medium",
+      "human_noticeability": 4,
+      "human_judgment": "Comparing the scene around 38 seconds and 54 seconds, the hanging light changes inconsistently. Earlier it appears as a single exposed bright bulb, while later it looks like a dimmer fixture with both a bulb and a lampshade. The light source design and brightness are not preserved across time.",
+      "targeted_question": "Comparing these two moments, does the same light fixture remain visually consistent in structure and brightness, or does it change from a single bright exposed bulb to a dimmer bulb-with-shade fixture?",
+      "expected_answer": "The light fixture is not consistent. It changes from a single bright exposed bulb to a dimmer bulb-with-shade fixture.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F029",
+      "source_video": "siyi_v2.mp4",
+      "source_url": "sample_AI_videos/siyi_v2.mp4",
+      "source_model": "unknown",
+      "category": "character_consistency",
+      "frame_range": [
+        778,
+        782
+      ],
+      "timestamp_sec": [
+        32.0,
+        32.1
+      ],
+      "key_frames": [
+        780
+      ],
+      "severity": "medium",
+      "human_noticeability": 4,
+      "human_judgment": "Near the end of 31 seconds, the left woman's visible left hand appears anatomically incorrect. The finger count or finger separation looks incomplete, making the hand appear to be missing a finger rather than showing a normal human hand shape.",
+      "targeted_question": "In this frame, does the left woman's visible left hand have a normal human finger count and shape, or does it appear to be missing a finger?",
+      "expected_answer": "The hand does not appear normal. It looks like it is missing a finger.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F030",
+      "source_video": "siyi_v2.mp4",
+      "source_url": "sample_AI_videos/siyi_v2.mp4",
+      "source_model": "unknown",
+      "category": "text_logo_corruption",
+      "frame_range": [
+        945,
+        955
+      ],
+      "timestamp_sec": [
+        37.8,
+        38.2
+      ],
+      "key_frames": [
+        950
+      ],
+      "severity": "medium",
+      "human_noticeability": 3,
+      "human_judgment": "Around 38 seconds, the letters on the bottle label are blurry and geometrically inconsistent with the bottle surface. The text does not appear to wrap or bend naturally with the bottle's curvature, so it looks pasted on rather than physically printed on a curved object.",
+      "targeted_question": "In this frame, does the bottle text look sharp and naturally wrapped to the bottle's curved surface, or is it blurry and geometrically inconsistent with the bottle shape?",
+      "expected_answer": "The bottle text is blurry and does not wrap naturally with the bottle's curved surface.",
+      "difficulty": "medium"
+    },
+    {
+      "id": "F031",
+      "source_video": "siyi_v1.mp4",
+      "source_url": "sample_AI_videos/siyi_v1.mp4",
+      "source_model": "unknown",
+      "category": "camera_movement_impossibilities",
+      "frame_range": [
+        812,
+        900
+      ],
+      "timestamp_sec": [
+        32.5,
+        36.0
+      ],
+      "key_frames": [
+        840,
+        852,
+        864,
+        876,
+        888,
+        900
+      ],
+      "severity": "high",
+      "human_noticeability": 5,
+      "human_judgment": "From around 33 to 36 seconds the entire frame is rotated 90 degrees relative to the rest of the video. The scene appears on its side while all other shots maintain normal upright orientation. No cut is visible at the transition, making this a physically impossible in-shot camera rotation.",
+      "targeted_question": "Comparing these frames in sequence, does the camera orientation remain consistent, or does the entire image appear rotated 90 degrees in some frames relative to others within the same continuous shot?",
+      "expected_answer": "The camera orientation is not consistent. The entire image is rotated 90 degrees, which is physically impossible within a single continuous shot without a cut.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "F032",
+      "source_video": "siyi_v2.mp4",
+      "source_url": "sample_AI_videos/siyi_v2.mp4",
+      "source_model": "unknown",
+      "category": "camera_movement_impossibilities",
+      "frame_range": [
+        1237,
+        1312
+      ],
+      "timestamp_sec": [
+        49.5,
+        52.5
+      ],
+      "key_frames": [
+        1240,
+        1255,
+        1275,
+        1300
+      ],
+      "severity": "high",
+      "human_noticeability": 5,
+      "human_judgment": "From around 50 to 52 seconds the entire frame is rotated 90 degrees relative to the rest of the video. The bottles and background appear on their sides, while all other shots in the clip maintain normal upright orientation. No cut is visible at the transition point, making this a physically impossible in-shot camera rotation.",
+      "targeted_question": "Comparing these frames in sequence, does the camera orientation remain consistent, or does the entire image appear rotated 90 degrees in some frames relative to others within the same continuous shot?",
+      "expected_answer": "The camera orientation is not consistent. The entire image is rotated 90 degrees in the middle frames, which is physically impossible within a single continuous shot without a cut.",
+      "difficulty": "easy"
+    },
+    {
+      "id": "F033",
+      "source_video": "dr_doctor_v1.mp4",
+      "source_url": "sample_AI_videos/dr_doctor_v1.mp4",
+      "source_model": "unknown",
+      "category": "camera_movement_impossibilities",
+      "frame_range": [
+        1840,
+        1852
+      ],
+      "timestamp_sec": [
+        73.6,
+        74.1
+      ],
+      "key_frames": [
+        1840,
+        1842,
+        1844,
+        1846,
+        1848,
+        1850,
+        1852
+      ],
+      "severity": "high",
+      "human_noticeability": 4,
+      "human_judgment": "The camera is continuously zooming out, but around frames 1846-1848 it abruptly zooms in before resuming the zoom-out. This sudden reversal in zoom direction within a continuous shot is physically impossible without a cut.",
+      "targeted_question": "Comparing these frames in sequence, does the camera zoom direction remain consistent, or does it reverse abruptly — zooming out then suddenly zooming in — within the same continuous shot?",
+      "expected_answer": "The zoom direction reverses abruptly within the continuous shot, which is physically impossible without a cut.",
+      "difficulty": "medium"
+    }
+  ]
+}

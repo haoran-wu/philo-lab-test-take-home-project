@@ -1,0 +1,49 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{ouyang2022rlhf}
+\citation{he2024videoscore}
+\citation{zheng2023judging}
+\citation{he2024videoscore}
+\citation{huang2024vbench}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{huang2024vbench}
+\citation{wei2022chain}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{VLM-as-judge.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{AI video failure taxonomies.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Prompt engineering for VLM evaluation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Failure Taxonomy}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Data Collection}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Failure instance distribution by category.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:distribution}{{1}{3}{Failure instance distribution by category}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}VLM Evaluation Protocol}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Blind Spot Rates by Category}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Blind spot rate per category per model. Cell format: rate (n=X). Higher rate means more failures missed by the model.}}{4}{figure.1}\protected@file@percent }
+\newlabel{fig:heatmap}{{1}{4}{Blind spot rate per category per model. Cell format: rate (n=X). Higher rate means more failures missed by the model}{figure.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Blind spot rates by category and model (baseline condition). Each cell shows rate (n=total cases for that category).}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:blindspot}{{2}{4}{Blind spot rates by category and model (baseline condition). Each cell shows rate (n=total cases for that category)}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Cross-Model Correlation}{5}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Pairwise Jaccard similarity of blind spot sets at baseline. Values near 0 indicate complementary failure modes; values near 1 indicate correlated failures.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:jaccard}{{3}{5}{Pairwise Jaccard similarity of blind spot sets at baseline. Values near 0 indicate complementary failure modes; values near 1 indicate correlated failures}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Confidence Calibration}{5}{subsection.4.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Baseline confidence scores split by outcome. ``blind\_spot'' = human FAIL, VLM PASS; ``correct\_detection'' = human FAIL, VLM FAIL.}}{5}{figure.2}\protected@file@percent }
+\newlabel{fig:confidence}{{2}{5}{Baseline confidence scores split by outcome. ``blind\_spot'' = human FAIL, VLM PASS; ``correct\_detection'' = human FAIL, VLM FAIL}{figure.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Prompt Engineering Ablation}{6}{subsection.4.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Rescue rates for Probe~A (structured prompt, same frames) and Probe~B (structured prompt, additional frames). Only cases that were blind spots at baseline are included.}}{6}{figure.3}\protected@file@percent }
+\newlabel{fig:rescue}{{3}{6}{Rescue rates for Probe~A (structured prompt, same frames) and Probe~B (structured prompt, additional frames). Only cases that were blind spots at baseline are included}{figure.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Most Dangerous Blind Spots for RLHF}{6}{subsection.5.1}\protected@file@percent }
+\bibstyle{plain}
+\bibcite{ouyang2022rlhf}{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Prompt Engineering vs.\ Training Intervention}{7}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Toward Verifiable Reward Formulation}{7}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\bibcite{he2024videoscore}{2}
+\bibcite{huang2024vbench}{3}
+\bibcite{zheng2023judging}{4}
+\bibcite{wei2022chain}{5}
+\gdef \@abspage@last{8}

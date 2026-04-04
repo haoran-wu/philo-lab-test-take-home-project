@@ -1,0 +1,250 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{multirow}
+
+\title{\textbf{VLM Blind Spot Discovery in AI-Generated Video}\\
+\large Quantifying Failure Modes That Frontier Vision-Language Models Miss}
+\author{Haoran Wu}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Vision-language models (VLMs) are increasingly used as reward signal judges in reinforcement learning from human feedback (RLHF) pipelines for video generation. However, if a VLM systematically fails to detect certain classes of visual defects, it will actively reinforce those defects rather than penalize them. We present a systematic study of \textit{VLM blind spots}: failure modes in AI-generated video that humans readily detect but frontier VLMs miss. We curate 33 human-annotated failure instances across six taxonomic categories from six AI-generated videos, then evaluate four frontier VLMs (Gemini~3.1~Pro, Gemini~3~Flash, Qwen~3.5~Omni, GPT-5.4) using targeted binary questions. Blind spot rates range from 9\% (Gemini~3.1~Pro) to 30\% (GPT-5.4) overall, with shadow/lighting physics and camera movement failures missed by the majority of models. For each identified blind spot, we measure whether stronger structured prompting (Probe~A) or expanded frame evidence (Probe~B) can recover the correct judgment: the overall rescue rate is below 10\%, indicating that the capability gaps are fundamental and require training-level intervention rather than prompt engineering.
+\end{abstract}
+
+% ---------------------------------------------------------------
+\section{Introduction}
+
+Generative video models have advanced rapidly, but they still produce systematic visual artifacts: objects that teleport between frames, physically impossible liquid flows, corrupted text, and characters whose anatomy changes mid-shot. A natural approach for training these models is to use a VLM as an automated judge, scoring generated videos for quality and providing reward signals for RLHF fine-tuning~\cite{ouyang2022rlhf}. This approach scales cheaply compared to human annotation and has been adopted in recent video reward modeling work~\cite{he2024videoscore}.
+
+The assumption underlying VLM-as-judge is that the model can reliably detect the same defects that humans would penalize. If this assumption breaks down for a systematic class of failures, the consequences are worse than random noise: the reward model will \textit{actively reward} the very defects it cannot see, pushing the generator to produce more of them.
+
+We call such cases \textbf{VLM blind spots}: instances where a human annotator judges a video segment as FAIL, but the VLM judge returns PASS. This paper asks three questions:
+\begin{enumerate}
+  \item Which failure categories are most prone to VLM blind spots across frontier models?
+  \item Do different models share the same blind spots (correlated) or miss different ones (complementary)?
+  \item Can better prompting or more evidence frames rescue a blind spot, or does the gap require training-level intervention?
+\end{enumerate}
+
+% ---------------------------------------------------------------
+\section{Related Work}
+
+\paragraph{VLM-as-judge.} Using language models as evaluators has been extensively studied for text~\cite{zheng2023judging}, and recent work has extended this to multimodal settings. VideoScore~\cite{he2024videoscore} and VBench~\cite{huang2024vbench} propose structured metrics for video quality, but focus on aggregate scores rather than per-failure detection. Our work targets the specific failure mode of systematic under-detection.
+
+\paragraph{AI video failure taxonomies.} Prior work on video generation quality has identified common artifact categories including temporal consistency, object permanence, and physical plausibility~\cite{huang2024vbench}. We build on these categorizations and add failure instances specifically designed to probe VLM detection limits.
+
+\paragraph{Prompt engineering for VLM evaluation.} Chain-of-thought and structured output prompting have been shown to improve VLM reasoning on visual tasks~\cite{wei2022chain}. We use a controlled ablation design (same frames, stronger prompt vs.\ additional frames) to separate the contribution of prompt engineering from evidence quantity.
+
+% ---------------------------------------------------------------
+\section{Methodology}
+
+\subsection{Failure Taxonomy}
+
+We define six categories of visual failure in AI-generated video:
+
+\begin{enumerate}
+  \item \textbf{Shadow / Lighting Physics} --- inconsistent shadow direction, contradictory light sources, physically impossible reflections.
+  \item \textbf{Character / Human Consistency} --- inter-frame changes in facial features, clothing, limb count, or body proportions.
+  \item \textbf{Object Permanence / Logical Consistency} --- objects appearing or disappearing without cause, quantity inconsistencies, violated spatial logic.
+  \item \textbf{Camera Movement Impossibilities} --- physically impossible camera trajectories, non-cut perspective jumps, inconsistent perspective lines.
+  \item \textbf{Text / Logo / Symbol Corruption} --- garbled text, deformed logos, unreadable or inconsistent characters across frames.
+  \item \textbf{Temporal Coherence / State Evolution} --- missing causal transitions, effect preceding cause, physically implausible state changes between frames.
+\end{enumerate}
+
+\subsection{Data Collection}
+
+We work with six AI-generated video clips (two each featuring a doctor scene, a man in an interior setting, and a woman in a bar setting). For each clip, one of the authors watched the video and identified segments containing clear visual defects. Failure instances were annotated with: the affected frame range, a set of key frames selected to maximally expose the defect, a natural-language description of the failure (\textit{human\_judgment}), a targeted binary question (\textit{targeted\_question}) phrased without leading hints, and an expected answer.
+
+This produced 30 failure instances distributed across the six categories (Table~\ref{tab:distribution}). All instances are human=FAIL by construction; we do not include negative controls in this study.
+
+\begin{table}[h]
+\centering
+\caption{Failure instance distribution by category.}
+\label{tab:distribution}
+\begin{tabular}{lc}
+\toprule
+Category & Count \\
+\midrule
+Object Permanence / Logical Consistency & 11 \\
+Text / Logo / Symbol Corruption & 10 \\
+Character / Human Consistency & 6 \\
+Temporal Coherence / State Evolution & 3 \\
+Shadow / Lighting Physics & 3 \\
+\midrule
+Total & 30 \\% TODO: add camera movement if applicable
+\bottomrule
+\end{tabular}
+\end{table}
+
+Key frames were selected following per-category strategies: single-frame defects (text corruption, anatomy) use 1--2 frames; cross-frame comparison defects (character consistency, object permanence) use 2--3 frames; temporal and camera defects use 4--8 densely-sampled sequential frames to expose the missing causal transition.
+
+\subsection{VLM Evaluation Protocol}
+
+We evaluate four frontier VLMs via the OpenRouter API: Gemini 3.1 Pro, Gemini 3 Flash, Qwen 3.5 Omni, and GPT-5.4. All models are queried with identical inference parameters (temperature $= 0$, max\_tokens $= 512$) and receive images in ascending frame-number order, each labeled ``Frame $N$''.
+
+We use three prompt conditions:
+
+\textbf{Baseline.} A minimal prompt that presents the key frames and asks the targeted question, requesting a structured JSON response with fields \texttt{judgment} (PASS/FAIL), \texttt{confidence} (1--5), and \texttt{explanation}.
+
+\textbf{Probe A (prompt-only).} The same frames as baseline, but the prompt additionally instructs the model to first describe observations in each frame, then compare across frames before giving a judgment. This isolates the effect of structured reasoning prompting.
+
+\textbf{Probe B (harness).} For temporal and camera failures only, Probe B uses the Probe A prompt structure \textit{and} expands the frame set to include additional intermediate frames sampled from the full \texttt{frame\_range}. This isolates the marginal effect of additional visual evidence beyond prompting.
+
+A result is classified as a \textbf{blind spot} when \texttt{human=FAIL} and \texttt{vlm\_judgment=PASS} under the baseline condition. The primary metric is:
+
+\[
+\text{blind\_spot\_rate} = \frac{|\{\text{PASS at baseline}\}|}{|\text{all instances}|}
+\]
+
+reported per category and per model, always accompanied by the raw count $n$.
+
+The \textbf{rescue rate} for Probe A measures what fraction of baseline blind spots are corrected (flipped to FAIL) by the stronger prompt:
+
+\[
+\text{rescue\_rate\_prompt} = \frac{|\{\text{blind spot at baseline, FAIL at Probe A}\}|}{|\{\text{blind spot at baseline}\}|}
+\]
+
+An analogous rescue\_rate\_harness is computed for Probe B on temporal/camera cases.
+
+% ---------------------------------------------------------------
+\section{Results}
+
+\subsection{Blind Spot Rates by Category}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{../output/figures/blind_spot_heatmap.png}
+  \caption{Blind spot rate per category per model. Cell format: rate (n=X). Higher rate means more failures missed by the model.}
+  \label{fig:heatmap}
+\end{figure}
+
+Table~\ref{tab:blindspot} and Figure~\ref{fig:heatmap} report baseline blind spot rates across the 33 human-annotated failure instances and four frontier VLMs.
+
+\begin{table}[h]
+\centering
+\caption{Blind spot rates by category and model (baseline condition). Each cell shows rate (n=total cases for that category).}
+\label{tab:blindspot}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Category & Gemini Flash & Gemini Pro & GPT-5.4 & Qwen Omni \\
+\midrule
+Camera Movement & 33\% (n=3) & 33\% (n=3) & \textbf{67\%} (n=3) & 33\% (n=3) \\
+Character Consistency & 0\% (n=4) & 0\% (n=4) & \textbf{50\%} (n=4) & 25\% (n=4) \\
+Object Permanence & 9\% (n=11) & 0\% (n=11) & \textbf{27\%} (n=11) & 9\% (n=11) \\
+Shadow / Lighting & 50\% (n=2) & 50\% (n=2) & 50\% (n=2) & 0\% (n=2) \\
+Temporal Coherence & 0\% (n=3) & 0\% (n=3) & 33\% (n=3) & 33\% (n=3) \\
+Text / Logo & 10\% (n=10) & 10\% (n=10) & 10\% (n=10) & 10\% (n=10) \\
+\midrule
+Overall & 12\% (n=33) & 9\% (n=33) & \textbf{30\%} (n=33) & 15\% (n=32) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+GPT-5.4 exhibits the highest overall blind spot rate (30\%), with particularly pronounced failures in character consistency (50\%) and camera movement (67\%). The two Gemini variants perform best overall, with Gemini~3.1~Pro achieving 0\% on object permanence and character consistency. Text/logo corruption is consistently detectable across all four models at $\leq$10\%, while shadow and lighting physics represents the most uniform blind spot: three of four models miss 50\% of cases in this category. Camera movement failures were never rescued by any model in any condition.
+
+\subsection{Cross-Model Correlation}
+
+\begin{table}[h]
+\centering
+\caption{Pairwise Jaccard similarity of blind spot sets at baseline. Values near 0 indicate complementary failure modes; values near 1 indicate correlated failures.}
+\label{tab:jaccard}
+\begin{tabular}{llcc}
+\toprule
+Model A & Model B & Shared blind spots & Jaccard \\
+\midrule
+Gemini Flash & Gemini Pro & 3 & 0.75 \\
+GPT-5.4 & Qwen Omni & 3 & 0.25 \\
+Gemini Flash & Qwen Omni & 1 & 0.13 \\
+Gemini Pro & Qwen Omni & 1 & 0.14 \\
+Gemini Flash & GPT-5.4 & 1 & 0.08 \\
+Gemini Pro & GPT-5.4 & 1 & 0.08 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The two Gemini variants are highly correlated (Jaccard $= 0.75$), sharing three of their four combined blind spots---consistent with their shared training lineage. GPT-5.4 and each Gemini model are nearly orthogonal (Jaccard $\approx 0.08$), suggesting strong complementarity: failures GPT misses are largely caught by Gemini and vice versa. This asymmetry motivates ensemble strategies pairing models from different families.
+
+\subsection{Confidence Calibration}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{../output/figures/confidence_boxplot.png}
+  \caption{Baseline confidence scores split by outcome. ``blind\_spot'' = human FAIL, VLM PASS; ``correct\_detection'' = human FAIL, VLM FAIL.}
+  \label{fig:confidence}
+\end{figure}
+
+Confidence scores are poorly calibrated for blind spots. Gemini~3.1~Pro reports a mean confidence of 5.0 on both correct detections \emph{and} blind spots---providing no discriminative signal whatsoever. Gemini Flash (mean 4.5 on blind spots vs.\ 4.8 on correct) and Qwen Omni (mean 4.6 vs.\ 4.6) show similar flat calibration. GPT-5.4 shows a slight downward shift on blind spots (mean 4.2 vs.\ 4.7), but the overlap is substantial. These results imply that confidence thresholding cannot be used to filter unreliable VLM judgments in a deployed reward model.
+
+\subsection{Prompt Engineering Ablation}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.9\linewidth]{../output/figures/rescue_rates.png}
+  \caption{Rescue rates for Probe~A (structured prompt, same frames) and Probe~B (structured prompt, additional frames). Only cases that were blind spots at baseline are included.}
+  \label{fig:rescue}
+\end{figure}
+
+Across 22 baseline blind spot cases targeted by Probe~A and 6 temporal/camera cases targeted by Probe~B, the overall rescue rate is near zero. The only exceptions are GPT-5.4 on shadow/lighting (1 of 1 case rescued, 100\%, n=1) and Gemini~3.1~Pro on text/logo (1 of 1 case rescued, 100\%, n=1)---both with $n=1$ and thus statistically uninformative. Every camera movement blind spot survives both probes intact (0\% rescue across all models and both conditions). Character consistency blind spots also show 0\% rescue under both Probe~A and Probe~B.
+
+% ---------------------------------------------------------------
+\section{Discussion}
+
+\subsection{Most Dangerous Blind Spots for RLHF}
+
+Three categories stand out as highest-risk for VLM-as-judge reward modeling. \textbf{Shadow and lighting physics} is missed by three of four frontier models at 50\%, with Gemini~3.1~Pro reporting maximum confidence (5/5) on every blind spot---meaning the reward model would actively reinforce physically impossible lighting with high certainty. \textbf{Camera movement impossibilities} are missed at 33--67\% across all models and proved completely irrescuable by either prompt engineering or additional frames. \textbf{Character consistency} failures are invisible to GPT-5.4 at 50\%, with 0\% rescue rate, and to Qwen Omni at 25\%. By contrast, text and logo corruption is the safest category for VLM-as-judge: all four models detect it reliably ($\leq$10\% blind spot rate).
+
+\subsection{Prompt Engineering vs.\ Training Intervention}
+
+The rescue rate decomposition strongly favors Hypothesis~2: blind spots arise because the underlying visual capability is absent, not because the model fails to reason carefully when prompted. The overall Probe~A rescue rate across all categories and models is approximately 9\% (2 of 22 cases). Probe~B, which additionally provides denser frame evidence for temporal and camera failures, achieves 0\% rescue on those categories. The marginal value of more frames is therefore negligible for the hardest cases. Together, these results suggest that fixing VLM blind spots in AI video reward modeling requires training-level interventions---targeted fine-tuning with explicit physical supervision, specialized architectures for temporal reasoning, or dedicated category-specific verifiers---rather than prompt engineering.
+
+\subsection{Toward Verifiable Reward Formulation}
+
+For blind spot categories with low rescue rates, two practical mitigation directions exist. First, \textbf{cross-family ensembling}: the near-orthogonal Jaccard scores between GPT-5.4 and both Gemini models ($\approx 0.08$) indicate highly complementary failure modes. A majority-vote ensemble of GPT-5.4 and Gemini~3.1~Pro would reduce the combined blind spot rate substantially compared to either model alone. However, this benefit does not extend to same-family pairs: the high Gemini--Gemini Jaccard (0.75) means that ensembling two Gemini variants provides almost no additional coverage. Second, \textbf{category-specific verifiers}: for shadow/lighting physics and camera movement---categories that are simultaneously high-blind-spot, high-confidence, and zero-rescue---dedicated verifiers with explicit physical or geometric supervision appear necessary. These could be lightweight classifiers trained on rendered ground-truth data where physical laws are exactly enforced.
+
+% ---------------------------------------------------------------
+\section{Conclusion}
+
+We evaluated four frontier vision-language models as automated judges for AI-generated video failures across 33 human-annotated instances spanning six defect categories. Our main findings are: (1)~blind spot rates vary widely across both models and categories, with GPT-5.4 exhibiting the highest overall rate (30\%) and shadow/lighting physics the most uniformly missed category; (2)~the two Gemini variants share highly correlated blind spots (Jaccard~$=~0.75$) while GPT-5.4 and Gemini are near-orthogonal ($\approx 0.08$), enabling complementary ensembling across model families but not within them; (3)~confidence scores are essentially uncalibrated for blind spots, with Gemini~3.1~Pro reporting maximum confidence on every blind spot; and (4)~prompt engineering and additional frame evidence both fail to rescue the vast majority of blind spots (overall rescue rate $<$10\%), indicating that the capability gaps are fundamental rather than superficial.
+
+These results have direct implications for RLHF pipelines that use VLM-as-judge for video generation reward modeling. Categories with high blind spot rate, high model confidence, and zero rescue rate---particularly shadow/lighting physics and camera movement---will be actively reinforced by current frontier VLMs. Addressing these blind spots requires training-level interventions: cross-family ensemble judges for partial coverage, and purpose-built physical verifiers for the hardest categories. We release our annotated dataset of 33 failure instances, all model responses, and the evaluation pipeline to support follow-on work in this direction.
+
+% ---------------------------------------------------------------
+\bibliographystyle{plain}
+\begin{thebibliography}{9}
+
+\bibitem{ouyang2022rlhf}
+Ouyang, L., et al. (2022).
+Training language models to follow instructions with human feedback.
+\textit{NeurIPS}.
+
+\bibitem{he2024videoscore}
+He, X., et al. (2024).
+VideoScore: Building Automatic Metrics to Simulate Fine-grained Human Feedback for Video Generation.
+\textit{arXiv:2406.15252}.
+
+\bibitem{huang2024vbench}
+Huang, Z., et al. (2024).
+VBench: Comprehensive Benchmark Suite for Video Generative Models.
+\textit{CVPR}.
+
+\bibitem{zheng2023judging}
+Zheng, L., et al. (2023).
+Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena.
+\textit{NeurIPS}.
+
+\bibitem{wei2022chain}
+Wei, J., et al. (2022).
+Chain-of-Thought Prompting Elicits Reasoning in Large Language Models.
+\textit{NeurIPS}.
+
+\end{thebibliography}
+
+\end{document}
