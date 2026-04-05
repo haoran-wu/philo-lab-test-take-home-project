@@ -1,5 +1,30 @@
 # VLM Blind Spot Discovery
 
+## Status of this repository
+
+This repository is an **alternate personal experiment repo**, not the official
+final submission version of the take-home.
+
+It was used to test a different evaluator design and a different prompting /
+parsing contract. The results here are useful as a methodological comparison,
+but they should **not** be treated as directly comparable to the final structured
+baseline reported in the main submission repo.
+
+Official submission repo:
+
+`/Users/haoranwu/Desktop/Philo Lab/Take Home Project`
+
+The biggest differences appear **before the API is even called**:
+
+- this repo stores explicit `key_frames` and often uses many more baseline frames
+- `frame_range` is used to expand temporal and camera cases into broader probes
+- baseline / `probe_a` / `probe_b` frame selection differs from the official repo's
+  simpler `1–3` selected-frame baseline
+- this repo uses a forced-binary JSON `PASS/FAIL` response contract rather than a
+  structured `PROBLEM / NO PROBLEM / UNCLEAR` verdict scheme
+
+Those changes materially affect the measured blind-spot rate.
+
 This repository contains a lightweight research pipeline for the Philo Labs Track D take-home:
 
 - curate human-labeled AI video failures
@@ -87,6 +112,8 @@ Notes:
 
 - `key_frames` drive baseline and `probe_a`.
 - `frame_range` is used to expand temporal/camera failures for `probe_b`.
+- This is one of the main methodological differences from the official repo:
+  frame selection is more heavily pre-specified here before the API call.
 - the pipeline only assumes `human=FAIL` failure cases.
 
 ## Commands
@@ -178,3 +205,6 @@ This makes baseline vs probe comparisons auditable.
 - No negative-control dataset is included yet, so there is no false-alarm analysis.
 - Direct-provider fallback keys are scaffolded, but the current implementation uses OpenRouter as the active evaluation backend.
 - The report template is a stub and should be filled after the first full run.
+- Because this repo uses a different schema, taxonomy, frame-selection policy, and
+  binary response contract, its blind-spot results should be interpreted as an
+  alternate evaluator prototype rather than the official final benchmark.
