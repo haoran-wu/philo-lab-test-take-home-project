@@ -62,7 +62,7 @@ We define six categories of visual failure in AI-generated video:
 
 We work with six AI-generated video clips (two each featuring a doctor scene, a man in an interior setting, and a woman in a bar setting). For each clip, one of the authors watched the video and identified segments containing clear visual defects. Failure instances were annotated with: the affected frame range, a set of key frames selected to maximally expose the defect, a natural-language description of the failure (\textit{human\_judgment}), a targeted binary question (\textit{targeted\_question}) phrased without leading hints, and an expected answer.
 
-This produced 30 failure instances distributed across the six categories (Table~\ref{tab:distribution}). All instances are human=FAIL by construction; we do not include negative controls in this study.
+This produced 33 failure instances distributed across the six categories (Table~\ref{tab:distribution}). All instances are human=FAIL by construction; we do not include negative controls in this study.
 
 \begin{table}[h]
 \centering
@@ -74,11 +74,12 @@ Category & Count \\
 \midrule
 Object Permanence / Logical Consistency & 11 \\
 Text / Logo / Symbol Corruption & 10 \\
-Character / Human Consistency & 6 \\
+Character / Human Consistency & 4 \\
 Temporal Coherence / State Evolution & 3 \\
-Shadow / Lighting Physics & 3 \\
+Camera Movement Impossibilities & 3 \\
+Shadow / Lighting Physics & 2 \\
 \midrule
-Total & 30 \\% TODO: add camera movement if applicable
+Total & 33 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -137,7 +138,7 @@ Table~\ref{tab:blindspot} and Figure~\ref{fig:heatmap} report baseline blind spo
 Category & Gemini Flash & Gemini Pro & GPT-5.4 & Qwen Omni \\
 \midrule
 Camera Movement & 33\% (n=3) & 33\% (n=3) & \textbf{67\%} (n=3) & 33\% (n=3) \\
-Character Consistency & 0\% (n=4) & 0\% (n=4) & \textbf{50\%} (n=4) & 25\% (n=4) \\
+Character Consistency & 0\% (n=4) & 0\% (n=4) & \textbf{50\%} (n=4) & 33\% (n=3) \\
 Object Permanence & 9\% (n=11) & 0\% (n=11) & \textbf{27\%} (n=11) & 9\% (n=11) \\
 Shadow / Lighting & 50\% (n=2) & 50\% (n=2) & 50\% (n=2) & 0\% (n=2) \\
 Temporal Coherence & 0\% (n=3) & 0\% (n=3) & 33\% (n=3) & 33\% (n=3) \\
