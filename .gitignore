@@ -1,9 +1,14 @@
 .env
 .venv/
 __pycache__/
+*.pyc
 .pytest_cache/
 .cache/
+.DS_Store
+.claude/
 data/frames/
 output/
 report/report.pdf
-
+report/*.aux
+report/*.log
+report/*.out
